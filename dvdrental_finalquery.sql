@@ -1,0 +1,43 @@
+WITH T1 AS (
+SELECT
+	category.name AS genero,
+	COUNT(rental.rental_id) AS cantidad_alquileres
+FROM category INNER JOIN film_category ON category.category_id = film_category.category_id
+			  INNER JOIN film ON film_category.film_id = film.film_id
+			  INNER JOIN inventory ON film.film_id = inventory.film_id
+			  INNER JOIN rental ON inventory.inventory_id = rental.inventory_id
+GROUP BY 1
+ORDER BY 2 DESC
+),
+
+T2 AS (
+SELECT
+	category.name AS genero,
+	SUM(amount) AS ventas_totales
+FROM category INNER JOIN film_category ON category.category_id = film_category.category_id
+			  INNER JOIN film ON film_category.film_id = film.film_id
+			  INNER JOIN inventory ON film.film_id = inventory.film_id
+			  INNER JOIN rental ON inventory.inventory_id = rental.inventory_id
+			  INNER JOIN payment ON rental.rental_id = payment.rental_id
+GROUP BY 1
+ORDER BY 2 DESC
+),
+
+T3 AS (
+SELECT
+	category.name AS genero,
+	COUNT(DISTINCT(customer_id)) AS clientes_unicos
+FROM category INNER JOIN film_category ON category.category_id = film_category.category_id
+			  INNER JOIN film ON film_category.film_id = film.film_id
+			  INNER JOIN inventory ON film.film_id = inventory.film_id
+			  INNER JOIN rental ON inventory.inventory_id = rental.inventory_id
+GROUP BY 1
+ORDER BY 2 DESC
+)
+
+SELECT
+	T1.*,
+	T2.ventas_totales,
+	T3.clientes_unicos
+FROM T1 INNER JOIN T2 ON T1.genero = T2.genero INNER JOIN T3 ON T3.genero = T2.genero
+ORDER BY 3 DESC, 2 DESC, 4 DESC
