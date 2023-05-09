@@ -12,11 +12,11 @@ Then, the data was visualized with simple queries to know the quantity of record
 
 ![dvdrental_finalquery](https://user-images.githubusercontent.com/131609936/236937916-3e7d6d07-ff4c-4e13-b55f-67a5bb310ba8.png)
 
-Next, the final SQL code was ran using PostgreSQL and the following outputs were retrived:
+Next, the final SQL code was run using PostgreSQL and the following outputs were retrieved:
 
 ![finalqueryinpostgresql](https://user-images.githubusercontent.com/131609936/236938399-02622b49-2471-43ce-870a-5a81f91f3951.png)
 
-Also, it was neccesary to visualize these three metrics so the results can be easily analyzed.
+Also, it was necessary to visualize these three metrics so the results can be easily analyzed.
 
 ![finalbarchart](https://user-images.githubusercontent.com/131609936/236938663-8e57b8d4-80eb-4ffe-8f4c-ff6f79aef7da.png)
 
